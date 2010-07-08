@@ -1,0 +1,14 @@
+To compile this project download the entire source tree and run
+
+$make
+
+You will need to have the following installed for the system to generate the document correctly.
+
+	* XeteX
+	* Pygments
+	* The following Tex packages
+		* Minted
+		* ifplatform
+		* The fancyvrb
+		* color
+	* The fonts Adobe Garamond Pro and Optima LT STD [TODO - Move to free fonts]
