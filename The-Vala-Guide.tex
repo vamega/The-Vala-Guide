@@ -11,6 +11,18 @@
 \setmonofont{Nimbus Mono L}
 
 %%------------------------------------------------------------
+% Commands for formatting code
+\renewcommand{\theFancyVerbLine}{
+  \bfseries\ttfamily\textcolor[RGB]{32,32,32}{\scriptsize\arabic{FancyVerbLine}}}
+
+\definecolor{bg}{RGB}{32,32,32}
+\usemintedstyle{native}
+
+%%------------------------------------------------------------
+% Commands to make inputting formatted code easy
+\newcommand{\inputvalacodefile}[1]{\inputminted[linenos=true,bgcolor=bg]{vala}{#1}}
+
+%%------------------------------------------------------------
 % formatting commands
 
 %\sloppy
@@ -55,12 +67,6 @@
 
 \begin{document}
 
-\renewcommand{\theFancyVerbLine}{
-  \bfseries\ttfamily\textcolor[RGB]{32,32,32}{\scriptsize\arabic{FancyVerbLine}}}
-
-\definecolor{bg}{RGB}{32,32,32}
-\usemintedstyle{native}
-
 %--title page--------------------------------------------------
 \pagebreak
 \thispagestyle{empty}
@@ -91,7 +97,7 @@ Varun Madiath
 \pagebreak
 \thispagestyle{empty}
 
-Copyright \copyright ~2003, 2008 Allen Downey.
+Copyright \copyright 2010 Varun Madiath.
 
 \vspace{0.25in}
 
@@ -120,36 +126,7 @@ The \LaTeX\ source for this book is available from
 \vspace{0.25in}
 
 %-- Chapters Begin-------------------------
-\chapter{Some Background}
-Vala is a new programming language that aims to bring modern programming language features to GNOME developers without imposing any additional runtime requirements and without using a different ABI compared to applications and libraries written in C.
-
-valac, the Vala compiler, is a self-hosting compiler that translates Vala source code into C source and header files. It uses the GObject type system to create classes and interfaces declared in the Vala source code.
-
-The syntax of Vala is similar to C\#, modified to better fit the GObject type system. Vala supports modern language features as the following:
-
-\begin{itemize}
-	\item Interfaces
-	\item Properties
-	\item Signals
-	\item Foreach
-	\item Lambda expressions
-	\item Type inference for local variables
-	\item Generics
-	\item Non-null types
-	\item Assisted memory management
-	\item Exception handling
-\end{itemize}
-
-Vala is designed to allow access to existing C libraries, especially GObject-based libraries, without the need for runtime bindings. All that is needed to use a library with Vala is an API file, containing the class and method declarations in Vala syntax. Vala currently comes with bindings for GLib and GTK+. It's planned to provide generated bindings for the full GNOME Platform at a later stage.
-
-Using classes and methods written in Vala from an application written in C is not difficult. The Vala library only has to install the generated header files and C applications may then access the GObject-based API of the Vala library as usual. It should also be easily possible to write a bindings generator for access to Vala libraries from applications written in e.g. C\# as the Vala parser is written as a library, so that all compile-time information is available when generating a binding.
-
-More information about Vala is available at
-
-	http://live.gnome.org/Vala/
-
-\inputminted[linenos=true,bgcolor=bg]{vala}{src/main.vala}
-
+\include{chapters/chapter1}
 
 \end{document}
 
