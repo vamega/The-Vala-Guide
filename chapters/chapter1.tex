@@ -1,15 +1,22 @@
 \chapter{Some Background}
-Vala is a new programming language that aims to bring modern programming language features to GNOME developers without imposing any additional runtime requirements and without using a different ABI compared to applications and libraries written in C.
+%TODO Explain Compilation and Linking, and interpretation. Also explain what a virtual machine.
 
-valac, the Vala compiler, is a self-hosting compiler that translates Vala source code into C source and header files. It uses the GObject type system to create classes and interfaces declared in the Vala source code.
+%TODO Improve this paragraph. Explain what C is better, and the reasoning behind the creation of Glib.
+C is a low level language programming language that can be run on a variety of platforms. A low level programming langauge is a programming language that exposes the programmer to the actual hardware that the code will run on. C comes with the C standard library, which in theory allows programmers to write code that can be compiled on different operating systems, and different processor architectures to create an executable file that will run on the system. However in practice the C standard library is not truly portable across operating systems, and in order to fix this the Glib library was developed.
 
-The syntax of Vala is similar to C\#, modified to better fit the GObject type system. Vala supports modern language features as the following:
+Glib is a library written in C that is designed to be cross platform, and used as an alternative to the C standard library. In addition to providing functionality like printing text to the screen, and reading from files, it also provides a type system that allows for the implementation of classes, interfaces and objects in C.
+
+Vala is a programming language that is designed for Glib developers. Using Glib Vala provides a lot of features found in other high level programming languages in a manner that is concise and easy to use. It does this without introducing a virtual machine of any sort, and thus can be compiled to very efficiently written code.
+
+Vala operates by converting Vala code into C source code and header files. It uses Glib's GObject type system to provide the object oriented features of Vala. The syntax of Vala is similar to C\#, or Java, but modified so as to work with the GObject type system.
+
+Some of the features that Vala supports are:
 
 \begin{itemize}
 	\item Interfaces
 	\item Properties
 	\item Signals
-	\item Foreach
+	\item Foreach loops
 	\item Lambda expressions
 	\item Type inference for local variables
 	\item Generics
@@ -18,12 +25,12 @@ The syntax of Vala is similar to C\#, modified to better fit the GObject type sy
 	\item Exception handling
 \end{itemize}
 
-Vala is designed to allow access to existing C libraries, especially GObject-based libraries, without the need for runtime bindings. All that is needed to use a library with Vala is an API file, containing the class and method declarations in Vala syntax. Vala currently comes with bindings for GLib and GTK+. It's planned to provide generated bindings for the full GNOME Platform at a later stage.
+Vala does not introduce any feature that cannot be accomplished using C with Glib, however Vala makes using these features much simpler. One of the most common criticisms of Glib is that it is very verbose, and has a lot of boilerplate code. Using Vala, programmers can skip writing all the verbose  code that C with Glib requires.
 
-Using classes and methods written in Vala from an application written in C is not difficult. The Vala library only has to install the generated header files and C applications may then access the GObject-based API of the Vala library as usual. It should also be easily possible to write a bindings generator for access to Vala libraries from applications written in e.g. C\# as the Vala parser is written as a library, so that all compile-time information is available when generating a binding.
+Vala is designed to allow the use of C libraries, especially GObject-based libraries easily. All that is needed to use a library written in C with Vala is a file describing the API, these files usually have a .vapi extension. This is different from other languages that use C libraries, which require special code, called a binding. that glues together the functionality of the language, and the C library. The problem with this is that when a library changes, the binding would have to be rewritten in order to continue being used with the library, as a result of which the bindings would be slightly behind the official implementation.
+
+Programmes written in C can also make use of Vala libraries written in Vala without any effort whatsoever. The vala compiler will automatically generate the header files required, which C programmes need to use the library. It is also possible to write bindings for Vala from other languages like python and Mono.
 
 More information about Vala is available at
 
-	http://live.gnome.org/Vala/
-
-\inputvalacodefile{src_org/main.vala}
+\hspace{0.25in}\url{http://live.gnome.org/Vala/}
