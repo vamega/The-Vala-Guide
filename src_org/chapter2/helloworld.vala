@@ -1,5 +1,4 @@
-    public static int main(string[] args) {
+void main(string[] args) {
 
-        stdout.printf("Hello, World\n");
-        return 0;
-    }
+    stdout.printf("Hello, World\n");
+}
