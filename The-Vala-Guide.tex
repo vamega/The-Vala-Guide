@@ -15,14 +15,19 @@
 %%------------------------------------------------------------
 % Commands for formatting code
 \renewcommand{\theFancyVerbLine}{
-  \bfseries\ttfamily\textcolor[RGB]{32,32,32}{\scriptsize\arabic{FancyVerbLine}}}
+  \bfseries\ttfamily\textcolor[RGB]{127,177,127}{\arabic{FancyVerbLine}}}
 
 \definecolor{bg}{RGB}{32,32,32}
 \usemintedstyle{native}
 
 %%------------------------------------------------------------
 % Commands to make inputting formatted code easy
-\newcommand{\inputvalacodefile}[1]{\inputminted[linenos=true,bgcolor=bg]{vala}{#1}}
+\newcommand{\inputvalacodefile}[1]{\inputminted[linenos=true,bgcolor=bg,framesep=10pt,frame=lines,rulecolor=\color{bg}]{vala}{#1}}
+
+\newenvironment{bashcommands}{\ttfamily\color[RGB]{22,22,22}}{}
+
+%\newenvironment{bashcommands}{\backgroundbox}{}
+%\def\backgroundbox#1\end{\colorbox{bg}{#1}\end}
 
 %%------------------------------------------------------------
 % formatting commands
@@ -126,7 +131,10 @@ The \LaTeX\ source for this book is available from
 \vspace{0.25in}
 
 %-- Chapters Begin-------------------------
+\fontsize{12pt}{18pt}\selectfont
 \include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/appendixA}
 
 \end{document}
 
