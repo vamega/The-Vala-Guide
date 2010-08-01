@@ -1,14 +1,95 @@
 \chapter{The Basics of Vala}
 
-Lets being writing programmes using Vala. The following is a simple programme that prints the words Hello World to the screen. Enter this code into your favourite text editor and save it in a file called \texttt{helloworld.java}.
+Let's being writing programmes using Vala. The following is a simple programme that prints the words Hello World to the screen. Enter this code into your favourite text editor and save it in a file called \texttt{helloworld.vala}.
 
 \inputvalacodefile{src_org/chapter2/helloworld.vala}
 
-To compile this programme, open up a terminal, change the directory to the directory where you saved your file, and type
+\section{Compiling the code}
+To compile this programme, open up a terminal, change the directory to the directory where you saved your file, and type \textbf{valac} followed by the name of the source file, as shown here.
 
 \begin{bashcommands}
-Hello.
-Whats up.
+$valac helloworld.vala
 \end{bashcommands}
 
+If there were no errors then it will appear as if nothing has happened. However a new executable file named \texttt{helloworld} would have been created by the compiler. You can run this programme by typing it's name preceded by \textbf{./} as is shown below.
 
+\begin{bashcommands}
+$./helloworld
+\end{bashcommands}
+
+You will see the following output.
+
+\begin{bashcommands}
+Hello, World
+\end{bashcommands}
+
+\section{Understanding the code}
+Despite it's length, the hello world programme introduces a number of features and concepts that are used in Vala. The programme starts with the following lines:
+
+\inputvalafilesection{src_org/chapter2/helloworld.vala}{1}{6}{0}
+
+This is a comment. A comment in Vala is text that is found in the source code, that is ignored by the compiler. A comment is generally used to describe the operation of the programme, the reasoning behind some code, or an explanation of how some section of code works.
+
+Vala uses two types of comments. The comment seen in the section above is called a \emph{multi-line comment}. It is named so because the comment can span multiple lines in the source code. This type of comment begins with the characters /* and ends with the characters */, with everything between these characters being the comment. It is important to note that the sequence of characters */ cannot appear anywhere in your comment, as the compiler will understand that character sequence to be the end of the comment. This implies that one inline comment may not be placed inside another.
+
+\inputvalafilesection{src_org/chapter2/helloworld.vala}{7}{7}{0}
+
+This line defines the \inlinecode{main( )} method. The \inlinecode{main( )} method is the code that is executed when the programme is run. It can be thought of as the starting point of a programme's execution. All Vala (and for that matter, C, C++, C\#, among others ) applications begin by running the code in the \inlinecode{main( )} method.
+
+%TODO: Explain what a method is!
+
+When a programme is executed by the operating system, the operating system runs the code in the main method, and when the programme has finished execution, it may return a number to the operating system. This number could be used to inform the operating system whether the programme finished execution without any problems, or could be used to signal a problem that had occurred during the execution of the programme. The keyword \inlinecode{void} in this line simply tells the compiler that \inlinecode{main( )} will not return a value. All methods can return a value, as you will see later on.
+
+Vala is a language which is case-sensitive. So \inlinecode{void} cannot be written as \inlinecode{VOID} or \inlinecode{Void}. The \inlinecode{main( )} method must be named exactly as is, as any change in capitalization would result in the file generated being unexecutable. This is because the compiler would not see a \inlinecode{main( )} method, and would thus compile the code assuming that it code meant to be used in another programme.
+
+The last character on the line is the \inlinecode{\{}. This signals the start of \inlinecode{main( )}’s body. All of the code that comprises a method will occur between the method’s opening curly brace and its closing curly brace.
+
+One other point: \inlinecode{main( )} is simply a starting place for your programme. A complex programme will have dozens of classes, only one of which will need to have a \inlinecode{main( )} method to get things started.
+
+\inputvalafilesection{src_org/chapter2/helloworld.vala}{8}{8}{4}
+
+This line is a \emph{single-line comment}, the other type of comment supported by Vala. A single-line comment commences with the character sequence \inlinecode{//} and terminates at the end of the line. They are generally used to add short explanations to particular lines of code, while multi-line  comments are used to add longer explanations.
+
+\inputvalafilesection{src_org/chapter2/helloworld.vala}{9}{9}{4}
+
+This line outputs the string of characters “Hello, World” to the screen, followed by a new-line character, that moves subsequent output to the next line. The \inlinecode{printf( )} method shown here is part of GLib a library that Vala relies upon extensively. The \inlinecode{printf} method will print the text inside the parenthesis to the screen. The \inlinecode{\textbackslash n} is a special character sequence that represents a newline.
+
+Notice that the \inlinecode{printf( )} statement ends with a semicolon. All statements in vala end with a semicolon. The only statement in this programme is the \inlinecode{printf( )} statement. All the other lines are not statements - they are either comments, method declarations, or in the case of lines with only the \inlinecode{\{} or \inlinecode{\}} characters, scope descriptors.
+
+\section{Programming with Variables}
+
+Although the programme written above instructs the computer, it is not very useful as everything in the programme was static. The programme would produce the same output on every run, and was not doing any calculation. Fundamental to making programmes more dynamic is the concept of a variable. A variable is just a name for a certain memory location. It can be thought of as a box where you can store data. The the data in a variable can be modified as a programme is running, thus allowing for a programme to become dynamic.
+
+This next programme introduces a few basic types of variables that are available in Vala.
+
+\inputvalacodefile{src_org/chapter2/variable_example.vala}
+
+You can compile and run this programme by typing
+
+\begin{bashcommands}
+$ valac variable_example.vala
+$ ./variable_example
+\end{bashcommands}
+
+The output will look like this.
+
+\begin{bashcommands}
+false
+v
+10
+15.33
+Varun Madiath
+\end{bashcommands}
+
+Let's now dissect this code to understand how this output was generated.
+
+\inputvalafilesection{src_org/chapter2/variable_example.vala}{9}{13}{4}
+
+These lines create variables, and assign them a value. There are different types of variables being created here. The \inlinecode{bool} variable represents a boolean, or a variable which has only two possible values, \inlinecode{true} and \inlinecode{false}. The unichar variable represents a character of text, so almost any character can be stored in this variable (yes that includes characters from Japanese and Indic scripts). The \inlinecode{int} variable represents an integer (a number which doesn't have a decimal point in it). The double variable represents a floating point number (a variable which may or may not have a decimal point in it) and finally a \inlinecode{string} variable represents a series (or string) of characters.
+
+Variables are assigned values with the \inlinecode{=} operator, with the name and type of the operator on the left side of the operator, and the value on the right side. The general form of a variable declaration can thus be written as (text inside square brackets is optional).
+
+%TODO change this to a vala insert
+\begin{bashcommands}
+type name [= value]
+\end{bashcommands}

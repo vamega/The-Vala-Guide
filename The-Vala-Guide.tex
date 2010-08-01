@@ -16,27 +16,28 @@
 % Commands for formatting code
 \renewcommand{\theFancyVerbLine}{
   \bfseries\ttfamily\textcolor[RGB]{127,177,127}{\arabic{FancyVerbLine}}}
+\newcommand{\inlinecode}[1]{
+  {\bfseries\ttfamily\textcolor[RGB]{173,175,117}{#1}}}
 
 \definecolor{bg}{RGB}{32,32,32}
 \usemintedstyle{native}
 
 %%------------------------------------------------------------
-% Commands to make inputting formatted code easy
-\newcommand{\inputvalacodefile}[1]{\inputminted[linenos=true,bgcolor=bg,framesep=10pt,frame=lines,rulecolor=\color{bg}]{vala}{#1}}
+% Commands to make inputting formatted code easy\newminted{}
+\newcommand{\inputvalacodefile}[1]{\inputminted[bgcolor=bg,framesep=10pt,frame=lines,xleftmargin=10pt,rulecolor=\color{bg}]{vala}{#1}}
 
-\newenvironment{bashcommands}{\ttfamily\color[RGB]{22,22,22}}{}
+\newcommand{\inputvalafilesection}[4]{\inputminted[bgcolor=bg,framesep=10pt,frame=lines,xleftmargin=10pt,rulecolor=\color{bg},firstline=#2,lastline=#3,gobble=#4]{vala}{#1}}
 
-%\newenvironment{bashcommands}{\backgroundbox}{}
-%\def\backgroundbox#1\end{\colorbox{bg}{#1}\end}
+\DefineVerbatimEnvironment{bashcommands}{Verbatim}{formatcom=\ttfamily\color[RGB]{22,22,22}}
 
 %%------------------------------------------------------------
 % formatting commands
 
-%\sloppy
+\sloppy
 \setlength{\topmargin}{0.125in}
-\setlength{\oddsidemargin}{0.25in}
-\setlength{\evensidemargin}{0.25in}
-\setlength{\textwidth}{430pt}
+\setlength{\oddsidemargin}{-0.10in}
+\setlength{\evensidemargin}{0.00in}
+\setlength{\textwidth}{500pt}
 
 \setlength{\headsep}{3ex}
 \setlength{\textheight}{8in}
