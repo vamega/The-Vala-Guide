@@ -1,7 +1,7 @@
 # --- Setting up Macros
 TEX = xelatex
 TEX_OPTIONS = -shell-escape
-TEX_CLEAN = aux\|out\|pyg\|log
+TEX_CLEAN = aux\|out\|pyg\|log\|toc
 
 # --- Defining targets
 all: The-Vala-Guide

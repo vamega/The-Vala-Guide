@@ -1,10 +1,11 @@
 \documentclass[openany]{book}
 
+\usepackage{booktabs}
 \usepackage{fontspec}
 \usepackage{color}
 \usepackage{fancyvrb}
 \usepackage{minted}
-\usepackage[pdfborder={0 0 0},colorlinks=true]{hyperref}
+\usepackage[pdfborder={0 0 0},colorlinks=true,linkcolor=black]{hyperref}
 
 \setromanfont{Adobe Garamond Pro}
 \setsansfont{Optima LT Std}
@@ -37,7 +38,7 @@
 \setlength{\topmargin}{0.125in}
 \setlength{\oddsidemargin}{-0.10in}
 \setlength{\evensidemargin}{0.00in}
-\setlength{\textwidth}{500pt}
+\setlength{\textwidth}{490pt}
 
 \setlength{\headsep}{3ex}
 \setlength{\textheight}{8in}
@@ -133,6 +134,7 @@ The \LaTeX\ source for this book is available from
 
 %-- Chapters Begin-------------------------
 \fontsize{12pt}{18pt}\selectfont
+\tableofcontents
 \include{chapters/chapter1}
 \include{chapters/chapter2}
 \include{chapters/appendixA}

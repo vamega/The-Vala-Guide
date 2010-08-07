@@ -1,6 +1,6 @@
 \chapter{The Basics of Vala}
 
-Let's being writing programmes using Vala. The following is a simple programme that prints the words Hello World to the screen. Enter this code into your favourite text editor and save it in a file called \texttt{helloworld.vala}.
+Let's begin writing programmes using Vala. The following is a simple programme that prints the words Hello World to the screen. Enter this code into your favourite text editor and save it in a file called \texttt{helloworld.vala}. Vala is a case-sensitive language, so when entering this code make sure not to
 
 \inputvalacodefile{src_org/chapter2/helloworld.vala}
 
@@ -30,7 +30,7 @@ Despite it's length, the hello world programme introduces a number of features a
 
 This is a comment. A comment in Vala is text that is found in the source code, that is ignored by the compiler. A comment is generally used to describe the operation of the programme, the reasoning behind some code, or an explanation of how some section of code works.
 
-Vala uses two types of comments. The comment seen in the section above is called a \emph{multi-line comment}. It is named so because the comment can span multiple lines in the source code. This type of comment begins with the characters /* and ends with the characters */, with everything between these characters being the comment. It is important to note that the sequence of characters */ cannot appear anywhere in your comment, as the compiler will understand that character sequence to be the end of the comment. This implies that one inline comment may not be placed inside another.
+Vala uses two types of comments. The comment seen in the section above is called a \emph{multi-line comment}. It is named so because the comment can span multiple lines in the source code. This type of comment begins with the characters /* and ends with the characters */, with everything between these characters being the comment.
 
 \inputvalafilesection{src_org/chapter2/helloworld.vala}{7}{7}{0}
 
@@ -40,7 +40,7 @@ This line defines the \inlinecode{main( )} method. The \inlinecode{main( )} meth
 
 When a programme is executed by the operating system, the operating system runs the code in the main method, and when the programme has finished execution, it may return a number to the operating system. This number could be used to inform the operating system whether the programme finished execution without any problems, or could be used to signal a problem that had occurred during the execution of the programme. The keyword \inlinecode{void} in this line simply tells the compiler that \inlinecode{main( )} will not return a value. All methods can return a value, as you will see later on.
 
-Vala is a language which is case-sensitive. So \inlinecode{void} cannot be written as \inlinecode{VOID} or \inlinecode{Void}. The \inlinecode{main( )} method must be named exactly as is, as any change in capitalization would result in the file generated being unexecutable. This is because the compiler would not see a \inlinecode{main( )} method, and would thus compile the code assuming that it code meant to be used in another programme.
+Vala is a language which is case-sensitive. So \inlinecode{void} cannot be written as \inlinecode{VOID} or \inlinecode{Void}. The \inlinecode{main( )} method must be named exactly as is, as any change in capitalisation would result in the file generated being unexecutable. This is because the compiler would not see a \inlinecode{main( )} method, and would thus compile the code assuming that it code meant to be used in another programme.
 
 The last character on the line is the \inlinecode{\{}. This signals the start of \inlinecode{main( )}’s body. All of the code that comprises a method will occur between the method’s opening curly brace and its closing curly brace.
 
@@ -79,13 +79,14 @@ v
 10
 15.33
 Varun Madiath
+20
 \end{bashcommands}
 
 Let's now dissect this code to understand how this output was generated.
 
 \inputvalafilesection{src_org/chapter2/variable_example.vala}{9}{13}{4}
 
-These lines create variables, and assign them a value. There are different types of variables being created here. The \inlinecode{bool} variable represents a boolean, or a variable which has only two possible values, \inlinecode{true} and \inlinecode{false}. The unichar variable represents a character of text, so almost any character can be stored in this variable (yes that includes characters from Japanese and Indic scripts). The \inlinecode{int} variable represents an integer (a number which doesn't have a decimal point in it). The double variable represents a floating point number (a variable which may or may not have a decimal point in it) and finally a \inlinecode{string} variable represents a series (or string) of characters.
+These lines create variables, and assign them a value. There are different types of variables being created here. The \inlinecode{bool} variable represents a boolean, or a variable which has only two possible values, \inlinecode{true} and \inlinecode{false}. The unichar variable represents a character of text, so almost any character can be stored in this variable (yes that includes characters from Japanese and Indic scripts). The character is enclosed in single-quation marks to indicate that it is a character, and not an command for the computer. The \inlinecode{int} variable represents an integer (a number which doesn't have a decimal point in it). The double variable represents a floating point number (a variable which may or may not have a decimal point in it) and finally a \inlinecode{string} variable represents a series (or string) of characters. A string is enlosed in double quotation marks to demarcate the text as a string.
 
 Variables are assigned values with the \inlinecode{=} operator, with the name and type of the operator on the left side of the operator, and the value on the right side. The general form of a variable declaration can thus be written as (text inside square brackets is optional).
 
@@ -93,3 +94,95 @@ Variables are assigned values with the \inlinecode{=} operator, with the name an
 \begin{bashcommands}
 type name [= value]
 \end{bashcommands}
+
+\inputvalafilesection{src_org/chapter2/variable_example.vala}{16}{20}{4}
+
+These lines print the values of the variables to the screen. Printing to the screen is done using the same \inlinecode{printf()} method that was used in the first example. You will notice that inside the \inlinecode{printf()} method most variable names are appended with \inlinecode{.to\_string()}. This is because the \inlinecode{printf()} method must be given a string to print to the screen. This is also the reason why the string variable is not appended with \inlinecode{.to\_string()}.
+
+\inputvalafilesection{src_org/chapter2/variable_example.vala}{23}{23}{4}
+
+This line modifies the value of \inlinecode{num} by assigning it a new value. The new value is given by the expression \inlinecode{num * 2}. It is important to not look at this as an algebraic expression, as that would not make sense, but rather as an assignment. There is another operator for equality, that we will discuss later. Here the value of \inlinecode{num} is multiplied by two, and the result is stored in \inlinecode{num}.
+
+\inputvalafilesection{src_org/chapter2/variable_example.vala}{26}{26}{4}
+
+This line prints the value of \inlinecode{num}. As you can see in the output, the value has changed after the assignment above.
+
+\section{A runthrough of some basic Vala Grammar}
+We have now written two small programmes in Vala, but before we proceed any further it would be wise to have a look at the various elements that make a programme. The different elements that compose a Vala programme are:
+
+\begin{itemize}
+\item Whitespace
+\item Comments
+\item Identifiers
+\item Keywords
+\item Literals
+\item Operators
+\item Separators
+\end{itemize}
+
+\section{Whitespace}
+Vala is a free-form language. A free-form language is one where code is not required to be formatted in any particular fashion. The programmes that we have written till now could be condensed into a single line (with the exception of the single line comments). The only requirement is that every token is separated by at least one character of whitespace, unless it is already separated by a separator or operator. Separators and operators will be discussed in just a moment.
+
+\section{Comments}
+We have already introduced the two types of comments that Vala supports. The single-line comment and the multi-line comment.
+
+It is important to note that the sequence of characters */ cannot appear anywhere in your comment, as the compiler will understand that character sequence to be the end of the comment. This implies that one inline comment may not be placed inside another. As you begin to write longer, more complicated programmes, you might wish to comment out a section of your code in order to try tracking the source of an error. In such cases uses a multi-line comment, is inadvisable unless you specifically know that there is no multi-line comment in that block of code. It is preferrable to use your editor to prepend each line in that code block with \inlinecode{//} as this cannot cause any problems. Most code editors have a feature that allows you to do this.
+
+%TODO Possibly include note about Valadoc comments.
+
+\section{Identifiers}
+Identifiers are used for method and variable names. In the programmes we have written until now we have always written a \inlinecode{main()} method, in these methods the identifier is \inlinecode{main}. All the variable names in the second example were identifiers. Less obvious identifiers were \inlinecode{stdout} and \inlinecode{printf()}, these are two different identifiers separated by a separator - the period. Identifiers in Vala must can only contain the characters [A-Z], [a-z], [0-9] or an underscore, but the first character may not be a digit.
+
+\section{Keywords}
+%For now skip mention of using a reserved keyword by using @ until a proper explanation of the corner cases can be found.
+Vala has a set of words that cannot be used as identifiers. These words are reserved for expressing information about the programme to the compiler.
+
+%TODO Conver this to a Table
+The list of reserved keywords is show in the following table:
+\begin{center}
+  \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}} l l l l l l l }
+      if & else & switch & case  & default & do & while \\
+      for & foreach & in & break & continue & return & try \\
+      catch & finally & throw & lock & class & interface & struct \\
+      enum & delegate & errordomain & const & weak & unowned & dynamic \\
+      abstract & virtual & override & signal & extern & static & async \\
+      inline & new & public & private & protected & internal & out \\
+      ref & throws & requires & ensures & namespace & using & as \\
+      is & in & new & delete & sizeof & typeof & this \\
+      base & null & true & false & get & set & construct \\
+      default & value & construct & void & var & yield & global \\
+      owned & ~ & ~ & ~ & ~ & ~ & ~ \\
+  \end{tabular*}
+\end{center}
+
+\section{Literals}
+Literals are the constructs that represent values in the programme. An example of a constant here would be the value \inlinecode{true}, for a boolean, or \inlinecode{Varun} for a string. Here are some examples of literals:
+
+\begin{itemize}
+\item 1824
+\item 1858.58
+\item true
+\item false
+\item null
+\item "Varun Madiath"
+\end{itemize}
+
+The first literal represents an integer, the next represents a floating-point value, the third and fourth are boolean constants, the fifth is the null constant, and the last represents a string. A literal can be substituted for a variable anywhere that a variable of its type is allowed. If you've actually read the entire list of keywords you would notice that the literals \inlinecode{true}, \inlinecode{false}, and \inlinecode{null} are also keywords.
+
+\section{Separators}
+In Vala, there are a few characters that are used as separators. The most commonly used separator in Vala is the semicolon. As you have seen, it is used to terminate
+statements. The separators are shown in the following table:
+
+%Try to fix this to automatically get wrapping at some point in time.
+\begin{center}
+  \begin{tabular*}{0.9\textwidth}{@{\extracolsep{\fill}} l l p{4in} }
+    Symbol & Name & Purpose \\
+    ( ) & Parentheses & They are used to contain the list of parameters in method definition and invocation. They are also used to define precedence  and contain expressions. Finally they are used to contain the data type when performing static type casting. \\
+    % must use \relax to terminate expression. Else xelatex assumes the [] are defining an optional argument.
+    \{ \} & Curly Braces & Used to contain the values of automatically initialised arrays. Also used to define a block of code, for classes, methods, and local scopes. \\ \relax
+    [ ] & Brackets & Used to declare array types. Also used when dereferencing array values. \\
+    ; & Semicolon & Terminates statements. \\
+    , & Comma & Separates consecutive identifiers in a variable declaration. Also used to chain statements together inside a for statement. \\
+    . & Period & Used to separate package names from subpackages and classes. Also used to separate a variable or method from a reference variable.
+  \end{tabular*}
+\end{center}
