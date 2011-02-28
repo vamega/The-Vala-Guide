@@ -12,3 +12,14 @@ You will need to have the following installed for the system to generate the doc
 		* The fancyvrb
 		* color
 	* The fonts Adobe Garamond Pro and Optima LT STD
+
+On Ubuntu the necessary Latex packages can be installed with the command
+sudo apt-get install texlive-xetex texlive-latex-recommended texlive-latex-extra
+
+You can installed the pygments source code highlighter with the following command.
+sudo apt-get install python-pygments
+
+Be warned however as this downloads nearly 400 MB of packages.
+
+TODO: Instructions for how to installed the minted package.
+TODO: Create a bash script that only downloads the xetex base, and then installs necessary scripts from CTAN. Alternatively figure out how to get this working with MikTeX so people don't have to download so many packages to work with this.
